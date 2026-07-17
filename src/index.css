@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply font-sans antialiased;
+  background-color: #f6f8fc;
+  color: #0f172a;
+}
+
+.dark body {
+  background-color: #060914;
+  color: #e2e8f0;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.35);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.6);
+  background-clip: content-box;
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/70 dark:bg-white/[0.04] backdrop-blur-xl border border-slate-200/70 dark:border-white/10;
+  }
+  .glass-strong {
+    @apply bg-white/90 dark:bg-white/[0.06] backdrop-blur-2xl border border-slate-200 dark:border-white/10;
+  }
+  .gradient-text {
+    @apply bg-gradient-to-r from-brand-500 via-accent-500 to-brand-400 bg-clip-text text-transparent;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold text-white
+      bg-gradient-to-r from-brand-600 to-accent-500 shadow-glow
+      transition-all duration-300 hover:shadow-[0_0_50px_-8px_rgba(51,133,252,0.65)] hover:-translate-y-0.5
+      focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400/70 focus-visible:ring-offset-2
+      disabled:opacity-60 disabled:pointer-events-none;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold
+      text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-white/10
+      bg-white/60 dark:bg-white/[0.03] backdrop-blur
+      transition-all duration-300 hover:bg-white dark:hover:bg-white/[0.08] hover:-translate-y-0.5;
+  }
+  .input {
+    @apply w-full rounded-xl px-4 py-2.5 text-sm
+      bg-white/80 dark:bg-white/[0.04] border border-slate-200 dark:border-white/10
+      text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500
+      transition-all duration-200
+      focus:outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-400/30;
+  }
+  .label {
+    @apply block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5;
+  }
+  .card {
+    @apply glass rounded-2xl shadow-soft;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium
+      bg-brand-50 text-brand-700 dark:bg-brand-500/10 dark:text-brand-300
+      border border-brand-100 dark:border-brand-500/20;
+  }
+}
+
+/* Print styles for downloaded portfolio */
+@media print {
+  body { background: white !important; color: black !important; }
+  .no-print { display: none !important; }
+  .print-block { display: block !important; }
+}
